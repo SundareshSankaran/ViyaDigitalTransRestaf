@@ -1,0 +1,69 @@
+<head>
+  <!-- Jquery CDN -->
+  <script   src="https://code.jquery.com/jquery-3.3.1.slim.min.js"   integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="   crossorigin="anonymous"></script>
+
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Rule Editor page of document upload demo">
+  <meta name="author" content="Sundaresh Sankaran">  </meta>
+
+  <title>Intelligent ERP</title>
+  <!-- Bootstrap core CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <!-- Custom fonts for this template -->
+  <link href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/simple-line-icons/css/simple-line-icons.css') }}" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+  <link href="{{ url_for('static', filename='css/landing-page.min.css') }}" rel="stylesheet">
+
+
+
+</head>
+<body>
+      <!-- Jquery CDN -->
+  <script   src="https://code.jquery.com/jquery-3.3.1.slim.min.js"   integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="   crossorigin="anonymous"></script>
+
+  <nav class="navbar navbar-light bg-light static-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">Home Page</a>
+      <a class="btn btn-primary" href="http://10.96.17.141/SASDrive"> SAS Viya</a>
+    </div>
+  </nav>
+  <header class="masthead text-white text-center">
+      <div class="overlay"></div>
+
+    <h2>Intelligent ERP</h2>  
+    <h6>Provide some administration related details to get started</h6>
+  </header>
+
+  <div class="row">
+    <div id="ruleleftpane" style="float:left;" class="col-xl-6">
+      <div class="card">
+        <div id="adminpanel" class="card-body primary">
+          <h5 class="card-title">Credentials for obtaining an Access Token</h5>
+          <p></p>
+          <p></p>
+          <p> Provide Host Name: <input id="hostname" style="float:right" label="Enter Host name" placeholder="e.g. an IP or hostname.hostviya.com"> </input></p>
+          <p> Provide Port: <input id="port" style="float:right" label="Enter Host name" placeholder="5570"> </input></p>
+          <p> User ID: <input id="userid"  style="float:right" label="Enter User ID" placeholder="sasdemo" > </input></p>
+          <p> Password: <input id="passwd"  style="float:right" type="password" label="Enter Password" > </input></p>
+          <button id="tokensubmit" class="btn-primary"> Submit </button>
+        </div>
+      </div>
+    </div>
+    <div id="rulerightpane" style="float:right;" class="col-xl-4">
+      <div class="card landscape" style="width:auto;height:auto">
+        <img src="/static/img/frontpageresized.jpg" class="card-img-top" alt="SAS - the power to know">
+      </div>
+    </div>
+  </div>
+      
+  </div>
+  <!-- Bootstrap core JavaScript -->
+  <script src="/static/vendor/jquery/jquery.min.js"></script>
+  <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/js/ontokensubmit.js"></script>
+  
+
+</body>

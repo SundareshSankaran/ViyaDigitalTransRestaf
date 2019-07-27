@@ -1,0 +1,25 @@
+{
+  "name": "aierpnode",
+  "version": "1.0.0",
+  "description": "Node package for the AIERP demo.",
+  "main": "enter.html",
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-tesseract": "^0.2.7",
+    "restaf-server": "^6.11.3"
+  },
+  "devDependencies": {
+    "parallelshell": "^3.0.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js --env=auth.env"
+  },
+  "author": "Sundaresh Sankaran",
+  "license": "ISC",
+  "keywords": [
+    "AIERP",
+    "OCR",
+    "Viya"
+  ]
+}

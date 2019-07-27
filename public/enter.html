@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Main page of Document upload demo">
+  <meta name="author" content="Sundaresh Sankaran "> </meta>
+
+  <title>Welcome to the Vendor Document Upload Page</title>
+
+  <!-- Bootstrap core CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+  <script  src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+ 
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-light bg-light static-top">
+    <div class="container">
+      <a class="navbar-brand" href="/ruleeditor">Edit Rules</a>
+      <a id="appButton" class="btn btn-primary" href="#">Visit SAS</a>
+    </div>
+
+
+  </nav>
+  <!-- /* background-image:url(https://www.litmos.com/wp-content/uploads/2017/04/learning-automation-lms-training.jpg); */ -->
+  <!-- Masthead -->
+  <div class="without-border no-overlay light-style container col" 
+        style="background-image:url('/img/bg-masthead.jpg');
+               background-size:cover;
+               padding-top:15%;
+              padding-bottom:8%;">
+    <div class="col"> 
+      <h1 style= "text-align:center; color:white;" >Please upload your documents using the browse button !</h1>
+    </div>
+    <div id="browseDiv" style="align-content: center;" class="row"> 
+      
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <script src="/js/testcode.js"></script>
+
+            <script>
+            
+
+            $.ajax({
+                        url :  "/userenv",
+                        type: 'GET',
+                        // data: data,
+                        contentType: false,
+                        processData: false,
+                        success: function(data) {
+                          console.log(data);
+                        },    
+                        error: function(e) {
+                          console.log(e);
+                          alert(" Try again !");
+                        }
+                      });
+
+            
+            </script>
+
+
+            <form id="form" action="/userenv" method = "post" enctype="multipart/form-data" >
+              <span class="btn btn-file" style="color: white"> Browse <input type="file" id="upfile" name="image"> </span>
+              <input type="submit" value="Upload your image" class="btn btn-primary">
+            </form>
+<!-- 
+
+            <form action="/SASJobExecution/" method="post" target="_SASResults"
+              enctype="multipart/form-data" id="theSASForm">
+              <input type="hidden" name="_program"     value="/Users/sinsrn/My Folder/JEUpload/Upload a File">
+              <input type="hidden" name="_action"      value="execute"/>
+              <input type="hidden" name="_output_type" value="ods_html5"/>
+              <input type="hidden" name="_csrf"        value="$CSRF$">
+
+              <label for="myfile">Choose a file to upload:</label>
+              <input type="file" name="myfile" id="myfile" required class="pointer"/>
+
+              <br/>
+              <br/>
+
+              <hr/>
+
+              <input type="submit" value="Run code" class="pointer"/>
+              <input type="checkbox" name="_debug" id="_debug" value="log" class="pointer"/><label for="_debug">Show SAS Log</label>
+
+            </form> -->
+
+            <script src = "/js/hostassign.js"></script>
+
+
+
+
+
+        </div>
+        <div class="col-md-3"></div>
+               
+    </div>
+  </div>
+      <div class=" row" id = "screenshot">
+        <br>
+        <script type="text/javascript">
+               function hasGetUserMedia() {
+                  return !!(navigator.mediaDevices &&
+                    navigator.mediaDevices.getUserMedia);
+                }
+
+                if (hasGetUserMedia()) {
+                  // Good to go!
+                    alert("YOU GOT CAM");
+                } else {
+                  alert('getUserMedia() is not supported by your browser');
+                }
+        </script>
+        <div class="col-sm-4">
+             <button class="btn-primary btn-lg capture-button" id="screenshot"> Click to start capturing </button>
+             <p>
+             <button class="btn-success btn-lg capture-button" id="screenshot-button" disabled> Take screenshot
+             </button>
+             
+        </div>
+        <p> <p>
+        <video id = "videoframe" class="videostream" autoplay></video>
+        <p>
+        <img src="" id="screenshot-img">
+        <canvas style="display:none;"></canvas>
+
+        <script>
+                const constraints = {
+                                      video: {width: {exact: 480}, height: {exact: 320}}
+                                    };
+                const video = document.querySelector('video');
+                navigator.mediaDevices.getUserMedia(constraints)
+                    .then((stream) => {video.srcObject = stream});
+                const captureVideoButton = document.querySelector('#screenshot .capture-button');
+                const screenshotButton = document.querySelector('#screenshot-button');
+                const img = document.querySelector('#screenshot-img');
+//                 const video = document.querySelector('#screenshot video');
+
+                const canvas = document.createElement('canvas');
+
+                captureVideoButton.onclick = function() {
+                      navigator.mediaDevices.getUserMedia(constraints)
+                          .then(handleSuccess).catch(handleError);
+
+
+                };
+
+                screenshotButton.onclick = video.onclick = function() {
+                    canvas.width = video.videoWidth;
+                    canvas.height = video.videoHeight;
+                    canvas.getContext('2d').drawImage(video, 0, 0);
+                      // Other browsers will fall back to image/png
+                    img.src = canvas.toDataURL('image/png');
+                    // Convert it to a blob to upload
+                    var blob = b64toBlob(img.src.split(",")[1], img.src.split(",")[0].split(";")[1]);
+                    console.log(img.src.split(",")[0].split(":")[1]);
+                     console.log(blob);
+                    var data = new FormData();
+                    data.append('file', blob);
+                    $.ajax({
+                        url :  "/uploadsnp",
+                        type: 'POST',
+                        data: data,
+                        contentType: false,
+                        processData: false,
+                        success: function(data) {
+                          $("#if").innerHTML=data;
+                          console.log(data);
+                        },    
+                        error: function() {
+                          alert(" Try again !");
+                        }
+                      });
+
+                    
+                };
+                      
+                function handleSuccess(stream) {
+                      window.stream = stream; // make stream available to console
+                      screenshotButton.disabled = false;
+                      video.srcObject = stream;
+                }
+                function handleError(error) {
+                  console.error('Error: ', error);
+                }
+            
+                function b64toBlob(b64Data, contentType, sliceSize) {
+                        contentType = contentType || '';
+                        sliceSize = sliceSize || 512;
+
+                        var byteCharacters = atob(b64Data);
+                        var byteArrays = [];
+
+                        for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+                            var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+                            var byteNumbers = new Array(slice.length);
+                            for (var i = 0; i < slice.length; i++) {
+                                byteNumbers[i] = slice.charCodeAt(i);
+                            }
+
+                            var byteArray = new Uint8Array(byteNumbers);
+
+                            byteArrays.push(byteArray);
+                        }
+
+                      var blob = new Blob(byteArrays, {type: contentType});
+                      return blob;
+                }
+            
+        </script>
+    </div>
+
+    
+    
+  <!-- Footer -->
+  <footer class="footer bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+          <ul class="list-inline mb-2">
+            <li class="list-inline-item">
+              <a href="#">About</a>
+            </li>
+            <li class="list-inline-item">&sdot;</li>
+            <li class="list-inline-item">
+              <a href="#">Contact</a>
+            </li>
+            <li class="list-inline-item">&sdot;</li>
+            <li class="list-inline-item">
+              <a href="#">Terms of Use</a>
+            </li>
+            <li class="list-inline-item">&sdot;</li>
+            <li class="list-inline-item">
+              <a href="#">Privacy Policy</a>
+            </li>
+          </ul>
+          <p class="text-muted small mb-4 mb-lg-0">&copy; SAS Institute 2019. All Rights Reserved.</p>
+        </div>
+        
+      </div>
+    </div>
+  </footer>
+
+
+
+</body>
+
+</html>

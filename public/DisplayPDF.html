@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+     <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    
+    
+  <title>Vendor Documents - Results Page</title>
+
+  <!-- Bootstrap core CDN -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+  <!-- Custom fonts for this template -->
+  
+    
+    
+        <link href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
+
+    
+    <!--     <link href="/templates/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"> -->
+    
+    <link href="{{ url_for('static', filename='vendor/simple-line-icons/css/simple-line-icons.css') }}" rel="stylesheet" type="text/css">
+
+    
+<!--   <link href="/templates/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css"> -->
+  
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+ 
+      <link href="{{ url_for('static', filename='css/landing-page.min.css') }}" rel="stylesheet">
+
+    
+<!--     <link href="css/landing-page.min.css" rel="stylesheet"> -->
+
+</head>
+
+<body>
+  <script src="/static/js/onloaddisplaypage.js"> </script>
+  <!-- Navigation -->
+  <nav class="navbar navbar-light bg-light static-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Visit SAS</a>
+      <a class="btn btn-primary" href="#">Sign In</a>
+    </div>
+  </nav>
+
+  <!-- Masthead -->
+  <header class="text-black text-center">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-5 mx-auto">
+          <h1 class="mb-5">PDF file</h1>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+    
+<!--     PDF Viewer -->
+  
+   <div class="row">
+        
+             <div class="d-none" id="myPdfRef" >{{fileloc}}</div>
+             <div class="d-none" id="mylinetable" >{{linetablename}}</div>
+    </div>
+    <div class="row">
+       
+       <div class = "col-lg-6">
+
+                        <object id='myPdfObject'  type='application/pdf' width="100%" height="100%">
+                             <embed id='myPdfEmbed' type='application/pdf' width="100%" height="100%"> 
+                                </embed>
+                        </object>
+                        <script>
+                                        var pdfUrl = document.getElementById("myPdfRef");
+                                        console.log($("#myPdfRef").text());
+                                        var pdfViewerObject = document.getElementById("myPdfObject");
+                                        pdfViewerObject.setAttribute("data",$("#myPdfRef").text());
+                                        pdfViewerObject.outerHTML = pdfViewerObject.outerHTML.replace(/data="(.+?)"/, 'data="' + $("#myPdfRef").text() + '"');
+
+                                        var pdfViewerEmbed = document.getElementById("myPdfEmbed");
+                                        pdfViewerEmbed.setAttribute("src", $("#myPdfRef").text());
+                                        pdfViewerEmbed.outerHTML = pdfViewerEmbed.outerHTML.replace(/src="(.+?)"/, 'src="' + $("#myPdfRef").text() + '"');
+                        </script>
+
+
+              </div>
+            
+               <div  class="col-lg-6">
+                 <div class="row" id="rightpane"></div>
+                  <h4> Results from SAS Viya </h4>
+                  <p> <strong>File Name: </strong><span class="alert" id="fileName">{{resdictone.fileName}}</span></p>
+                  <p> <strong>Purchase Order No: </strong> <input value="{{resdictone.pONumber}}"> </input></p>
+
+                  <div class="row">
+                      <div class="col-lg-3">
+                          <p> <strong>Organization Name : </strong><input value="{{resdictone.organizationName}}"> </input> </p>
+                      </div>
+                      <div class="col-lg-3">
+                          <p> <strong>Company Code: </strong><input value="{{resdictone.companyCode}}"> </input> </p>
+                        </div>
+                    </div>    
+
+                    <div class="row">
+                      <div class="col-lg-2">
+                          <p> <strong>City: </strong><input value="{{resdictone.city}}"> </input> </p>
+                        </div>
+                        <div class="col-lg-2">
+                            <p> <strong>State: </strong><input value="{{resdictone.state}}"> </input> </p>
+                          </div>
+                          <div class="col-lg-2">
+                              <p> <strong>Zip:</strong><input value="{{resdictone.nlpZipcode}}"> </input> </p>
+                          </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-3">
+                        <p> <strong>Phone (tel): </strong><input value="{{resdictone.phoneTelephone}}"> </input> </p>
+                  
+                    </div>
+                    <div class="col-lg-3">
+                        <p> <strong>Phone (fax): </strong><input value="{{resdictone.phoneFax}}"> </input></p>
+                      
+                      </div>
+                  </div>              
+                  
+                  <div class="row">
+                      <div class="col-lg-3">
+                          <p> <strong>Order Number : </strong>{{resdictone.orderNumber}}</p>
+                        </div>
+                      <div class="col-lg-3">
+                          <p> <strong>Order Date: </strong> <input type="date" value="{{resdictone.orderDate}}"></input></p>
+                        </div>
+                    </div> 
+                    
+                  <p> <strong>Contact: </strong>{{resdictone.customerContact}}</p>
+                  <p> <strong>Document Type: </strong>{{resdictone.documentType}}</p>
+
+
+                  <table style="width:100%;">
+                    <tr>
+                      <th>Product Code</th>
+                      <th>Product</th>
+                      <th>Ordered Qty</th>
+                      <th>Shipped Qty</th>
+                      <th>Delete this row</th>
+                    </tr>
+                    {% for entryy in resdictone.details %}
+                       <tr> 
+                         <td>
+                            <input value="{{ entryy.productCode }}">
+                         </td> 
+                         <td>
+                            <input value="{{entryy.product}}">
+                         </td>
+                         <td>
+                            <input value="{{ entryy.orderedQty }}">
+                         </td> 
+                         <td>
+                            <input value="{{ entryy.shippedQty }}">
+                         </td>
+                         <td>
+                           <button class="btn-small btn-danger">Delete entry</button>
+                         </td> 
+                       </tr>
+                    {% endfor %}
+                  </table>
+             
+                  <button id="bapi" class="btn btn-lg btn-primary">Submit Data to BAPI</button>   
+            
+    </div>
+       
+  
+    </div>
+    <!-- Modal -->
+    <div id = "myModal" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Message from SAP</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id ="modalBody">
+            <p>Modal body text goes here.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Print error / confirmation </button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="/static/vendor/jquery/jquery.min.js"></script> -->
+  <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

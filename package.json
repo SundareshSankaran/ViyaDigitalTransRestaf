@@ -6,7 +6,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "node-tesseract": "^0.2.7",
-    "restaf-server": "^6.11.3"
+    "restaf-server": "^6.12.0"
   },
   "devDependencies": {
     "parallelshell": "^3.0.2"

@@ -4,7 +4,7 @@
   "description": "Node package for the AIERP demo.",
   "main": "enter.html",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "node-tesseract": "^0.2.7",
     "restaf-server": "^6.12.0"
   },
